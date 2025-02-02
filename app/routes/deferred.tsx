@@ -33,29 +33,86 @@ function Deferred() {
   const { deferredStuff, deferredPerson, person } = Route.useLoaderData()
 
   return (
-    <div className="p-2">
-      <div data-testid="regular-person">
-        {person.name} - {person.randomNumber}
+    <div className="space-y-6 max-w-2xl mx-auto p-6">
+      <div className="rounded-lg border bg-white dark:bg-gray-900 p-4">
+        <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+          Instant Data (No Loading State)
+        </div>
+        <div className="text-sm" data-testid="regular-person">
+          <span className="font-medium">{person.name}</span> - Random Number: {person.randomNumber}
+        </div>
       </div>
-      <Suspense fallback={<div>Loading person...</div>}>
-        <Await
-          promise={deferredPerson}
-          children={(data) => (
-            <div data-testid="deferred-person">
-              {data.name} - {data.randomNumber}
+
+      <div className="rounded-lg border bg-white dark:bg-gray-900 p-4">
+        <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
+          Deferred Person (1s delay)
+        </div>
+        <Suspense 
+          fallback={
+            <div className="animate-pulse flex items-center gap-2 text-sm text-gray-400">
+              <div className="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+              Loading person data...
             </div>
-          )}
-        />
-      </Suspense>
-      <Suspense fallback={<div>Loading stuff...</div>}>
-        <Await
-          promise={deferredStuff}
-          children={(data) => <h3 data-testid="deferred-stuff">{data}</h3>}
-        />
-      </Suspense>
-      <div>Count: {count}</div>
-      <div>
-        <button onClick={() => setCount(count + 1)}>Increment</button>
+          }
+        >
+          <Await
+            promise={deferredPerson}
+            children={(data) => (
+              <div className="text-sm" data-testid="deferred-person">
+                <span className="font-medium">{data.name}</span> - Random Number: {data.randomNumber}
+              </div>
+            )}
+          />
+        </Suspense>
+      </div>
+
+      <div className="rounded-lg border bg-white dark:bg-gray-900 p-4">
+        <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
+          Deferred Message (2s delay)
+        </div>
+        <Suspense 
+          fallback={
+            <div className="animate-pulse flex items-center gap-2 text-sm text-gray-400">
+              <div className="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+              Loading message...
+            </div>
+          }
+        >
+          <Await
+            promise={deferredStuff}
+            children={(data) => (
+              <div className="text-sm font-medium" data-testid="deferred-stuff">
+                {data}
+              </div>
+            )}
+          />
+        </Suspense>
+      </div>
+
+      <div className="rounded-lg border bg-white dark:bg-gray-900 p-4">
+        <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
+          Interactive Counter
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="text-sm">Count: {count}</div>
+          <button
+            onClick={() => setCount(count + 1)}
+            className="px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-800 
+              hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          >
+            Increment
+          </button>
+        </div>
+      </div>
+
+      <div className="text-sm text-gray-400 dark:text-gray-500">
+        This example demonstrates different data loading patterns:
+        <ul className="mt-2 space-y-1 list-disc pl-4">
+          <li>Instant data that loads with the route</li>
+          <li>Deferred data that streams in after 1 second</li>
+          <li>Deferred data that streams in after 2 seconds</li>
+          <li>Interactive state that persists across streaming updates</li>
+        </ul>
       </div>
     </div>
   )
