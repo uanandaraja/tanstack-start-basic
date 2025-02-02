@@ -29,7 +29,7 @@ function UserComponent() {
   const user = Route.useLoaderData()
 
   return (
-    <div className="max-w-2xl">
+    <div className="max-w-2xl pt-4">
       <h1 className="text-2xl font-semibold mb-6">{user.name}</h1>
       <div className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm border">
         <div className="space-y-4">
