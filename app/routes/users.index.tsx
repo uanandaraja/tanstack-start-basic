@@ -5,5 +5,9 @@ export const Route = createFileRoute('/users/')({
 })
 
 function UsersIndexComponent() {
-  return <div>Select a user.</div>
+  return (
+    <div className="text-center text-gray-500 dark:text-gray-400 mt-12">
+      <p>Select a user from the sidebar to view their details.</p>
+    </div>
+  )
 }
