@@ -1,29 +1,41 @@
-import { Link, createFileRoute } from '@tanstack/react-router'
-import { fetchPost } from '../utils/posts'
-import { PostErrorComponent } from './posts.$postId'
+import { Link, createFileRoute } from "@tanstack/react-router";
+import { fetchPost } from "../utils/posts";
+import { PostErrorComponent } from "./posts.$postId";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
-export const Route = createFileRoute('/posts_/$postId/deep')({
+export const Route = createFileRoute("/posts_/$postId/deep")({
   loader: async ({ params: { postId } }) =>
     fetchPost({
       data: postId,
     }),
   errorComponent: PostErrorComponent,
   component: PostDeepComponent,
-})
+});
 
 function PostDeepComponent() {
-  const post = Route.useLoaderData()
+  const post = Route.useLoaderData();
 
   return (
-    <div className="p-2 space-y-2">
+    <article className="max-w-3xl mx-auto px-6 py-10">
       <Link
         to="/posts"
-        className="block py-1 text-blue-800 hover:text-blue-600"
+        className="inline-flex items-center text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-8"
       >
-        ← All Posts
+        <ArrowLeftIcon className="w-5 h-5 mr-2" />
+        Back to Posts
       </Link>
-      <h4 className="text-xl font-bold underline">{post.title}</h4>
-      <div className="text-sm">{post.body}</div>
-    </div>
-  )
+
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          {post.title}
+        </h1>
+      </header>
+
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+          {post.body}
+        </p>
+      </div>
+    </article>
+  );
 }
