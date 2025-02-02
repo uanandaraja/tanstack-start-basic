@@ -12,13 +12,13 @@ function Home() {
         <span className="text-xs font-semibold">STATUS: BETA</span>
       </div>
 
-      <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
         Full-stack React framework
         <br />
         powered by TanStack Router
       </h1>
 
-      <p className="max-w-2xl mx-auto text-xl text-muted-foreground">
+      <p className="max-w-2xl mx-auto text-md text-muted-foreground">
         SSR, Streaming, Server Functions, API Routes, bundling and more powered
         by TanStack Router, Nitro, and Vite. Ready to deploy to your favorite
         hosting provider.
