@@ -15,7 +15,6 @@ type NavLinkProps = {
   to: string;
   label: string;
   isMobile?: boolean;
-  tsIgnore?: boolean;
 };
 
 function NavLink({ to, label, isMobile }: NavLinkProps) {
