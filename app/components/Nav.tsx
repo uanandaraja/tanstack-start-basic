@@ -66,13 +66,13 @@ export function Nav() {
             }}
             activeOptions={{ exact: true }}
           >
-            <img 
-              src="/logo-color.png" 
-              alt="TanStack Logo" 
+            <img
+              src="/logo-color.png"
+              alt="TanStack Logo"
               className="h-8 w-auto"
             />
           </Link>
-          
+
           {/* Desktop navigation */}
           <div className="hidden md:flex md:items-center md:gap-6">
             {navigationLinks.map((link) => (
@@ -83,7 +83,7 @@ export function Nav() {
           <div className="flex-1" />
           <Button
             as="a"
-            href="https://tanstack.com/router/latest/docs/framework/react/overview"
+            href="https://tanstack.com/start/latest/docs/framework/react/overview"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
@@ -93,7 +93,7 @@ export function Nav() {
         </div>
 
         {/* Mobile menu */}
-        <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
+        <div className={`md:hidden ${isMobileMenuOpen ? "block" : "hidden"}`}>
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navigationLinks.map((link) => (
               <NavLink key={link.to} {...link} isMobile />
@@ -104,4 +104,3 @@ export function Nav() {
     </nav>
   );
 }
-
